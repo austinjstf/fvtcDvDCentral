@@ -1,0 +1,80 @@
+﻿@model AJS.DVDCentral.UI.ViewModels.OrderVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="m-2">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.CustomerName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.CustomerName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.UserName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.UserName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.OrderDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.OrderDate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.ShipDate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.ShipDate)
+        </dd>
+    </dl>
+</div>
+    
+
+<div class="m-2">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.ImagePath)
+        </dt>
+        <dd class ="col-sm-2">
+            <img src="~/images/@Model.order.ImagePath" height="100px" width="100px" alt="@Model.order.ImagePath">
+        </dd>
+    </dl>
+</div>
+
+<div class="m-2">
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.Title)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.Title)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.Quantity)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.Quantity)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.order.Cost)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.order.Cost)
+        </dd>
+    </dl>
+</div>
+
+<div class="m-2">
+    <partial name="_ShoppingPartial" model="Model.order.shoppingList" />
+</div>
+
+
+
+<div class="m-2">
+    @Html.ActionLink("Edit", "Edit", new { id = Model.order.Id }) |
+    <a asp-action="Index">Back to List</a>
+</div>
+

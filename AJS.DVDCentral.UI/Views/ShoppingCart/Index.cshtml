@@ -1,0 +1,33 @@
+﻿@model AJS.DVDCentral.BL.Models.ShoppingCart
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Movies[0].Title)
+            </th>
+
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model.Movies) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+
+            <td>
+                @Html.ActionLink("Remove", "Remove", new { id = item.Id })
+            </td>
+            <td>
+                <a class="btn btn-sm btn-success" asp-action="Checkout" asp-controller="ShoppingCart">Check Out</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

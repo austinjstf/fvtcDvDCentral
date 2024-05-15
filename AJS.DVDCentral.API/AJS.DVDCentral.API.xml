@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AJS.DVDCentral.API</name>
+    </assembly>
+    <members>
+        <member name="M:AJS.DVDCentral.API.Controllers.MovieController.Get">
+            <summary>
+            Returns a list of movies.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:AJS.DVDCentral.API.Controllers.MovieController.Get(System.Guid)">
+            <summary>
+            Returns a list of movies by ID.
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

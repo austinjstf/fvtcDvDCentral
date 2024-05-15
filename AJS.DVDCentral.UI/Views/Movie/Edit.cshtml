@@ -1,0 +1,93 @@
+﻿@model AJS.DVDCentral.UI.ViewModels.MovieVM
+
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="row m-2">
+    <div class="col-md-4">
+        <form asp-action="Edit" method="post" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+           
+                <input hidden asp-for="movie.Id" class="form-control" />
+               
+            <div class="form-group">
+                <label asp-for="movie.Title" class="control-label"></label>
+                <input asp-for="movie.Title" class="form-control" />
+                <span asp-validation-for="movie.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="movie.Description" class="control-label"></label>
+                <input asp-for="movie.Description" class="form-control" />
+                <span asp-validation-for="movie.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="movie.Quantity" class="control-label"></label>
+                <input asp-for="movie.Quantity" class="form-control" />
+                <span asp-validation-for="movie.Quantity" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="movie.ImagePath" class="control-label"></label>
+                <img class="imagepropmedium m-2" id="programimage" src="/images/@Model.movie.ImagePath" alt="@Model.movie.Description" onclick="on('/images/@Model.movie.ImagePath')" />
+                <input hidden asp-for="movie.ImagePath" class="form-control"/>
+                <input type="file" name="File" id="File" accept="image/" onchange="loadFile(event)" />
+                <span asp-validation-for="movie.ImagePath" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="movie.DirectorFullName" class="control-label"></label>
+                <select asp-for="movie.DirectorId" class="form-control" asp-items="@(new SelectList(Model.directors, "Id", "FullName"))"></select>
+                <span asp-validation-for="movie.DirectorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="movie.Genres" class="control-label"></label>
+
+                <select asp-for="MovieGenreIds"
+                        class="form-control"
+                        multiple
+                        asp-items="@(new MultiSelectList(Model.genres, "Id", "Description"))">
+                </select>
+
+                <span asp-validation-for="movie.Genres" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="movie.RatingDescription" class="control-label"></label>
+                <select asp-for="movie.RatingId" class="form-control" asp-items="@(new SelectList(Model.ratings, "Id", "Description"))"></select>
+                <span asp-validation-for="movie.RatingId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="movie.FormatDescription" class="control-label"></label>
+                <select asp-for="movie.FormatId" class="form-control" asp-items="@(new SelectList(Model.formats, "Id", "Description"))"></select>
+                <span asp-validation-for="movie.FormatId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="movie.Cost" class="control-label"></label>
+                <input asp-for="movie.Cost" class="form-control" />
+                <span asp-validation-for="movie.Cost" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group m-2">
+                <input type="submit" value="Save" class="btn btn-primary mt-2" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div class="m-2">
+    <a asp-action="Index">Back to List</a>
+    <input class="btn btn-sm btn-primary" type="button" onclick="AddToCart(@Model.movie.Id)" value="Add Movie To Cart (+)">
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
+
+<script>
+    var loadFile = function (event) {
+        var output = document.getElementById('programimage');
+        output.src = URL.createObjectURL(event.target.files[0]);
+
+    }
+</script>
